@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useGithubContext } from "../context/context";
 import { Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
+
 const Repos = () => {
   const { repos } = useGithubContext();
 
   const languages = repos.reduce((total, item) => {
     const { language, stargazers_count } = item;
-
     if (!language) return total;
     if (!total[language]) {
       total[language] = { label: language, value: 1, stars: stargazers_count };
@@ -20,8 +20,8 @@ const Repos = () => {
     }
     return total;
   }, {});
-  console.log(languages);
 
+  // languages
   const mostUsed = Object.values(languages)
     .sort((a, b) => {
       return b.value - a.value;
@@ -49,7 +49,7 @@ const Repos = () => {
     { stars: {}, forks: {} }
   );
   stars = Object.values(stars).slice(-5).reverse();
-  forks = Object.values(stars).slice(-5).reverse();
+  forks = Object.values(forks).slice(-5).reverse();
 
   return (
     <section className="section">

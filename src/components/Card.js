@@ -1,7 +1,8 @@
 import React from "react";
+import { useGithubContext } from "../context/context";
 import styled from "styled-components";
 import { MdBusiness, MdLocationOn, MdLink } from "react-icons/md";
-import { useGithubContext } from "../context/context";
+
 const Card = () => {
   const { githubUser } = useGithubContext();
   const {
@@ -27,13 +28,13 @@ const Card = () => {
       <p className="bio">{bio}</p>
       <div className="links">
         <p>
-          <MdBusiness></MdBusiness> {company}
+          <MdBusiness /> {company}
         </p>
         <p>
-          <MdLocationOn></MdLocationOn> {location || "earth"}
+          <MdLocationOn /> {location || "earth"}
         </p>
         <a href={`https://${blog}`}>
-          <MdLink></MdLink>
+          <MdLink />
           {blog}
         </a>
       </div>

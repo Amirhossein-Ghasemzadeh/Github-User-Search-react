@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GoRepo, GoGist } from "react-icons/go";
 import { FiUsers, FiUserPlus } from "react-icons/fi";
 import { useGithubContext } from "../context/context";
+
 const UserInfo = () => {
   const { githubUser } = useGithubContext();
   const { public_repos, followers, following, public_gists } = githubUser;
@@ -37,23 +38,27 @@ const UserInfo = () => {
       color: "yellow",
     },
   ];
+
   return (
     <section className="section">
       <Wrapper className="section-center">
         {items.map((item) => {
-          const { icon, label, value, color, id } = item;
-          return (
-            <article className="item" key={id}>
-              <span className={color}>{icon}</span>
-              <div>
-                <h3>{value}</h3>
-                <p>{label}</p>
-              </div>
-            </article>
-          );
+          return <Item key={item.id} {...item}></Item>;
         })}
       </Wrapper>
     </section>
+  );
+};
+
+const Item = ({ icon, label, value, color }) => {
+  return (
+    <article className="item">
+      <span className={color}>{icon}</span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
+    </article>
   );
 };
 
